@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_networking/app_define/app_enum.dart';
 import 'package:flutter_networking/app_navigation/navigation_bottom.dart';
+import 'package:flutter_networking/app_navigation/navigation_tab.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TabItem _currentTab = TabItem.red;
 
-  void _selectedTabbar(TabItem tabItem) {
+  void _selectedTab(TabItem tabItem) {
     if (tabItem == _currentTab) {
 
     } else {
@@ -46,7 +47,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       bottomNavigationBar: NavigationBottom(
         currentTab: _currentTab,
-        onSelectTab: _selectedTabbar,
+        onSelectTab: _selectedTab,
+      ),
+      body: Stack(children: [
+        _buildOffstageNavigator(TabItem.red),
+        _buildOffstageNavigator(TabItem.green),
+        _buildOffstageNavigator(TabItem.blue)
+      ],
+      ),
+    );
+  }
+
+  Widget _buildOffstageNavigator(TabItem tabItem) {
+    return Offstage(
+      offstage: _currentTab != tabItem,
+      child: NavigationTab(
+        tabItem: tabItem,
       ),
     );
   }
