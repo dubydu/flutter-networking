@@ -10,7 +10,7 @@ class NetworkingManager {
   final String _baseUrl = "https://5cb7edd21551570014da39cc.mockapi.io/api/v1/";
 
   Future<dynamic> get(String url) async {
-    print('GET: $url');
+    print('GET: ${_baseUrl + url}');
     var responseJson;
     try {
       final response = await http.get(_baseUrl + url);
@@ -35,7 +35,7 @@ class NetworkingManager {
       case 500:
       default:
         throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : ${response
+            'Error occurred while Communication with Server with StatusCode : ${response
                 .statusCode}');
     }
   }

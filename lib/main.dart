@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_networking/app_define/app_enum.dart';
 import 'package:flutter_networking/app_navigation/navigation_bottom.dart';
 import 'package:flutter_networking/app_navigation/navigation_tab.dart';
+import 'package:flutter_networking/router.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Networking'),
+      onGenerateRoute: Routers.generateRoute,
     );
   }
 }
